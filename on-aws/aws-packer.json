@@ -1,0 +1,71 @@
+{
+    "variables": {
+        "aws_access_key": "",
+        "aws_secret_key": "",
+        "aws_region": "",
+        "aws_vpc": "",
+        "aws_subnet": "",
+        "ami_name": "",
+        "ami_description": "",
+        "builder_name": "",
+        "username":"ubuntu",
+        "instance_type":"t2.medium",
+        "tarball": ""
+    }, 
+    "builders": [
+        {
+            "type":"amazon-ebs", 
+            "region": "{{user `aws_region`}}", 
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}", 
+            "subnet_id": "{{user `aws_subnet_id`}}", 
+            "security_group_id": "{{user `aws_security_group`}}", 
+            "source_ami_filter": {
+                "filters": {
+                    "virtualization-type": "hvm", 
+                    "name": "ubuntu/images/*ubuntu-focal-20.04-amd64-server-*",
+                    "root-device-type": "ebs"
+                },
+                "owners": ["099720109477"],
+                "most_recent": true
+            },
+            "instance_type": "{{user `instance_type`}}",
+            "ssh_username":"ubuntu", 
+            "ami_name": "ubuntu-ami-custom_{{timestamp}}"
+        }
+
+    ],
+    "provisioners": [
+        {
+          "type": "file",
+          "source":"uploads",
+          "destination": "/home/ubuntu"
+        },
+        {
+          "type": "file",
+          "source": "./config/defaults.cfg",
+          "destination": "/tmp/defaults.cfg"
+        },
+        {
+          "type": "shell",
+          "inline": [
+            "sudo mv /tmp/defaults.cfg /etc/cloud/cloud.cfg.d/defaults.cfg"
+          ]
+        },
+        {
+          "execute_command": "echo '{{user `username`}}' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+          "script": "scripts/install_tools.sh",
+          "type": "shell"
+        },
+        {
+          "execute_command": "echo '{{user `username`}}' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+          "script": "scripts/setup.sh",
+          "type": "shell"
+        },
+        {
+          "execute_command": "echo '{{user `username`}}' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+          "script": "scripts/cleanup.sh",
+          "type": "shell"
+        }
+      ]
+}
