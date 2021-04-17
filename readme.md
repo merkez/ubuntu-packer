@@ -2,7 +2,7 @@
 
 This repository contains packer scripts to provision custom images on AWS or local. 
 
-__Blog Post__ : [https://mrturkmen.com/build-with-packer/](https://mrturkmen.com/build-with-packer/)
+__Blog Post__ : [https://mrturkmen.com/posts/build-with-packer/](hhttps://mrturkmen.com/posts/build-with-packer/)
 
 ## Installed Tools
 
