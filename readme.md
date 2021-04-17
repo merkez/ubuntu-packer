@@ -2,6 +2,8 @@
 
 This repository contains packer scripts to provision custom images on AWS or local. 
 
+__Blog Post__ : [https://mrturkmen.com/build-with-packer/](https://mrturkmen.com/build-with-packer/)
+
 ## Installed Tools
 
 - NMAP - [https://nmap.org/](https://nmap.org/)
