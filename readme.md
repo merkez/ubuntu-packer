@@ -2,6 +2,14 @@
 
 This repository contains packer scripts to provision custom images on AWS or local. 
 
+## Installed Tools
+
+- NMAP - [https://nmap.org/](https://nmap.org/)
+- XRPD - [http://xrdp.org/](http://xrdp.org/)
+- UBUNTU-DESKTOP - [GUI](https://phoenixnap.com/kb/how-to-install-a-gui-on-ubuntu)
+- NET-TOOLS  - [https://packages.ubuntu.com/bionic/net-tools](https://packages.ubuntu.com/bionic/net-tools)
+
+
 ## On Local 
 
 In order to generate custom ova file on local environment, it is enough to execute following command: 
